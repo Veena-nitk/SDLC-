@@ -187,17 +187,7 @@ python main.py --title "Custom Gateway" --scope "Real-time payment routing..."
 
 ---
 
-## Presentation & Review Resources
 
-A comprehensive 10-minute presentation manual is included in [`output/TEN_MINUTE_PRESENTATION_GUIDE.md`](output/TEN_MINUTE_PRESENTATION_GUIDE.md), featuring:
-- 30-Second Elevator Pitch
-- 4-Step Backend Architecture Walkthrough
-- UI Walkthrough & RAG Explanation
-- Minute-by-Minute Speaking Script
-- Top 10 Review & Viva Q&A Defense Answers
-- Technical Code Tour Cheat Sheet
-
----
 
 ## License
 
