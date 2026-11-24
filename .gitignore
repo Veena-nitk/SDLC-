@@ -1,0 +1,27 @@
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment Variables & API Keys
+.env
+.env.local
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Temporary task or test artifacts
+*.log
+scratch_test_*.py
+
+# Large binary output (keep reports reproducible via server)
+output/*.pdf
+!output/TEN_MINUTE_PRESENTATION_GUIDE.md

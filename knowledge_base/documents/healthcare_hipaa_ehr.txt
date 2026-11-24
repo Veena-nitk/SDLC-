@@ -1,0 +1,9 @@
+Title: Healthcare Clinical Systems & Patient Record Security Standards
+Jurisdiction: HIPAA Security & Privacy Rules / HITECH / HL7 FHIR
+Scope: Electronic Health Records (EHR), Telemedicine & Clinical Workflows
+
+Section 1: Protected Health Information (PHI) Access & Audit
+Electronic health systems must protect patient PHI (medical history, lab diagnostics, demographic data). Role-Based Access Control (RBAC) must restrict doctor, nurse, pharmacist, and billing specialist privileges. Break-the-glass emergency access protocols must generate immediate alerts to hospital compliance officers.
+
+Section 2: Interoperability via HL7 FHIR
+Clinical data exchange between hospital systems, lab diagnostics, and pharmacies must adhere to RESTful HL7 FHIR standards with TLS 1.3 encryption and OAuth2 access token authentication.

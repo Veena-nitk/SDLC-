@@ -1,0 +1,31 @@
+Title: Software Development Life Cycle (SDLC) Model Selection Framework
+Scope: Waterfall, V-Model, Agile (Scrum/Kanban), Prototyping, RAD, Spiral, Incremental
+Application: Engineering methodology determination based on risk, requirements stability, and customer collaboration.
+
+1. Waterfall Model
+Best when: Requirements are clearly stated, fixed, well-understood upfront, and unlikely to change. High formal documentation is legally mandated. System architecture is straightforward.
+Drawbacks: Inflexible to evolving user needs, testing occurs only at the very end of the lifecycle.
+
+2. V-Model (Verification and Validation)
+Best when: Safety-critical, mission-critical, or high-compliance applications where every design tier must be validated against a corresponding test tier (Unit, Integration, System, Acceptance). Failure has severe financial or safety consequences.
+Drawbacks: Rigid linear sequence like Waterfall; difficult to accommodate mid-project requirement shifts.
+
+3. Agile / Scrum Model
+Best when: Rapidly evolving software, changing customer expectations, web/mobile applications, competitive time-to-market. Work is delivered in 2-week iterations (sprints) with continuous stakeholder feedback and working software demonstrations.
+Drawbacks: Requires dedicated customer involvement; requires strict team discipline to avoid scope creep.
+
+4. Prototyping Model
+Best when: Requirements are vague, UI/UX workflow is experimental, or customers do not know exactly what they need. A throwaway or evolutionary mock system is built first to clarify requirements before full-scale coding.
+Drawbacks: Risk of customer confusing prototype with final product; increased upfront development overhead.
+
+5. Rapid Application Development (RAD) Model
+Best when: Modular projects with well-defined user personas and short delivery timelines (30-90 days), using reusable code components, low-code platforms, and heavy visual modeling.
+Drawbacks: Requires highly skilled modular designers and strong user availability for continuous workshop sessions.
+
+6. Spiral Model (Risk-Driven)
+Best when: High-risk, large-scale, technically unprecedented systems with high uncertainty (e.g., complex AI algorithms, novel distributed architectures). Cycles repeatedly through risk analysis, prototyping, evaluation, and planning.
+Drawbacks: Expensive, complex process management; requires expert risk assessment talent.
+
+7. Incremental Model
+Best when: Core baseline functionality must be delivered immediately to market, while advanced modules are developed and rolled out in sequential releases.
+Drawbacks: Needs clean core modular architecture upfront to avoid refactoring debt during later increments.

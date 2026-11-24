@@ -1,0 +1,12 @@
+Title: Insurance Claims Processing & Adjudication Standards
+Jurisdiction: National Insurance Commissioners (NAIC) / Health Insurance Portability (HIPAA)
+Scope: Insurance Policy Management, Claims Adjudication & Anti-Fraud
+
+Section 1: Automated Claims Intake & Document OCR
+Claims systems must capture first notice of loss (FNOL), policyholder records, medical bills, and police incident reports via digital channels. Automated document verification must flag duplicate claims, mismatched policy dates, and exaggerated damage assessments.
+
+Section 2: Anti-Fraud Scoring & Special Investigation Unit (SIU)
+Claims engines must compute a fraud probability score based on claimant history, loss patterns, and provider networks. Any claim with a risk score exceeding threshold or total claim value exceeding $50,000 must be routed to the Special Investigation Unit (SIU) for manual adjudication.
+
+Section 3: Statutory Settlement & Reserve Accounting
+Approved insurance claims must disburse payouts to policyholder bank accounts via automated clearing house (ACH) with automated deduction of deductibles. Reserve liabilities must be calculated and synced with general ledger accounting per statutory insurance standards.

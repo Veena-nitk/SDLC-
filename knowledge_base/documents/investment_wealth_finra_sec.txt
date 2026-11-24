@@ -1,0 +1,12 @@
+Title: Investment Management, Algorithmic Trading & Securities Standards
+Jurisdiction: SEC Rule 15c3-5 / FINRA / Markets in Financial Instruments (MiFID II)
+Scope: Algorithmic Order Routing, Risk Gates, Portfolio Rebalancing & Trade Audit
+
+Section 1: Pre-Trade Risk Controls & Kill Switches
+Broker-dealers and trading platforms must implement automated, hardware-accelerated pre-trade risk controls preventing erroneous order size, single-order dollar limits, and erroneous ticker submissions. An automated global kill switch must immediately halt trading upon detecting anomalous order velocity or extreme market volatility.
+
+Section 2: Order Audit Trail System (OATS) & CAT Reporting
+Every order submission, modification, cancellation, execution, and routing event must be timestamped with microsecond synchronization (PTP/NTP) and submitted to the Consolidated Audit Trail (CAT). Market manipulation patterns (spoofing, layering, wash sales) must trigger automated supervisory compliance alerts.
+
+Section 3: Portfolio Rebalancing & Suitability Assessment
+Algorithmic wealth management systems must assess investor risk tolerance (conservative, balanced, aggressive) and enforce asset allocation bounds. Automated portfolio rebalancing triggers must calculate tax-loss harvesting and execution slippage before dispatching batch trade orders.

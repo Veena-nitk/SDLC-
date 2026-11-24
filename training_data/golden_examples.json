@@ -1,0 +1,30 @@
+[
+  {
+    "id": "TRAIN-EX-001",
+    "domain": "Loan Origination & Underwriting",
+    "input_scenario": "Digital SME credit scoring and instant loan underwriting platform with core banking integration.",
+    "expected_requirements": [
+      "FR-001: The system SHALL ingest borrower financial statements and credit bureau telemetry to compute debt-service coverage ratio (DSCR).",
+      "FR-002: For loans exceeding $50,000, the system SHALL mandate secondary underwriter manual review before dispatching ISO 20022 settlement.",
+      "NFR-SEC-001: All borrower tax identifiers and bank statements SHALL be encrypted using AES-256 with keys in FIPS 140-3 HSM.",
+      "NFR-AVAIL-001: System SHALL provide 99.99% availability with zero transactional data loss (RPO = 0)."
+    ],
+    "expected_sdlc": "Agile-DevSecOps Hybrid",
+    "justification": "Requires rapid iteration on credit ML models combined with automated compliance and security verification gates.",
+    "added_on": "2026-11-14T20:00:00Z"
+  },
+  {
+    "id": "TRAIN-EX-002",
+    "domain": "Payment Gateway & Settlement",
+    "input_scenario": "Ultra-low-latency card payment processor with instant fraud detection and tokenization.",
+    "expected_requirements": [
+      "FR-001: The system SHALL validate card tokens and execute 3D Secure 2.0 biometric challenge for transactions > $500.",
+      "FR-002: Real-time fraud scoring SHALL evaluate velocity and geofence within 15 milliseconds per transaction.",
+      "NFR-PERF-001: Processing throughput SHALL support 25,000 TPS with sub-50ms latency at p99.",
+      "NFR-AUD-001: An immutable, cryptographically chained audit record SHALL be written for every debit/credit."
+    ],
+    "expected_sdlc": "DevSecOps with Formal Verification Gates",
+    "justification": "High transaction concurrency and strict PCI-DSS Level 1 compliance require automated security testing in CI/CD.",
+    "added_on": "2026-11-14T20:00:00Z"
+  }
+]

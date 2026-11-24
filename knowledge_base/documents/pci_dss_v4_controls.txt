@@ -1,0 +1,13 @@
+Title: PCI-DSS v4.0 Payment Card Industry Data Security Standard
+Jurisdiction: Global / Financial Payment Card Processing
+Effective Date: March 2024 (Mandatory 2025)
+Standard Identifier: PCI-DSS-4.0
+
+Section 3.4: Protection of Stored Primary Account Numbers (PAN)
+All Primary Account Numbers (PAN) stored in cardholder data environments must be rendered unreadable using strong cryptography (AES-256 or RSA-4096). Cryptographic keys must be managed inside a FIPS 140-3 Level 3 Hardware Security Module (HSM). Sensitive Authentication Data (SAD), including card verification values (CVV/CVC) and PIN blocks, must never be retained after authorization under any circumstances.
+
+Section 8.3: Identification and Multi-Factor Authentication (MFA)
+Multi-Factor Authentication (MFA) is strictly required for all access to the cardholder data environment (CDE), all administrative console logins, and all remote access connections. MFA factors must include at least two of: something you know (password/passphrase), something you have (hardware token/authenticator app), or something you are (biometric identifier).
+
+Section 10.2: Audit Logging and Automated Monitoring
+Automated audit trails must be enabled for all system components. Logs must capture all individual user access to cardholder data, all administrative privilege escalations, all failed login attempts, and all changes to cryptographic keys. Logs must be written to Write-Once-Read-Many (WORM) storage, retained for at least 12 months, and reviewed daily using automated SIEM alerting.

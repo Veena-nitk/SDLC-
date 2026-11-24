@@ -1,0 +1,20 @@
+[
+  {
+    "rule_id": "RULE-FIN-001",
+    "title": "Dual-Control Segregation of Duties (SoD)",
+    "constraint": "Any transaction or disbursement exceeding $25,000 requires separate originator and approver credentials.",
+    "mandatory": true
+  },
+  {
+    "rule_id": "RULE-FIN-002",
+    "title": "FIPS 140-3 Cryptographic Custody",
+    "constraint": "Primary Account Numbers (PAN) and biometric vectors must never be decrypted in plaintext outside HSM enclave.",
+    "mandatory": true
+  },
+  {
+    "rule_id": "RULE-FIN-003",
+    "title": "Audit Trail WORM Immutability",
+    "constraint": "Audit logs must be written to Write-Once-Read-Many storage with NTP synchronized timestamps and SHA-256 chain hashing.",
+    "mandatory": true
+  }
+]

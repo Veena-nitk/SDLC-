@@ -1,0 +1,18 @@
+Title: Conversational Voice AI, Biometric Authentication, and Next-Gen FinTech UX Standards
+Scope: Voice-driven banking, natural language transaction assistants, biometric identity verification (FIDO2 / WebAuthn), and consumer wallet interactions.
+Standards & Regulatory References: FIDO Alliance FIDO2 / WebAuthn, ISO/IEC 19794-5 (Biometric Face Image Data), GDPR Article 9 (Special Categories of Data - Biometrics), NIST SP 800-63B (Digital Identity Guidelines - AAL3).
+
+Section 1: Conversational Dialogue Management & Natural Language Understanding
+1. Natural language voice queries in financial transactions (e.g., "Send $50 to Alice from checking", "What was my largest debit this week?") contain high linguistic variance, background acoustic noise, accent heterogeneity, and intent ambiguity.
+2. The dialogue state tracker must support multi-turn disambiguation, acoustic confidence scoring, and explicit confirmation prompts for monetary transfers exceeding $25.
+3. Fallback mechanisms: If automated intent recognition confidence falls below 0.85, the system must gracefully offer visual card choices or numeric confirmation.
+
+Section 2: Biometric Custody & Privacy by Design
+1. Facial biometric vectors and vocal acoustic prints must never leave the user's secure enclave on the mobile device in raw unencrypted form.
+2. The platform authenticates transactions using asymmetric cryptographic key-pairs bound to the device's hardware TPM (Trusted Platform Module) per FIDO2 standards.
+3. Under GDPR Article 9 and CCPA, explicit affirmative biometric consent is required, accompanied by an alternative non-biometric authentication path (alphanumeric password + SMS/Authenticator TOTP).
+
+Section 3: SDLC Methodology Alignment (Why Prototyping is Essential)
+1. Extreme interaction ambiguity: Voice and gesture-driven financial interfaces represent completely novel consumer experiences. Users cannot describe ideal conversational flows through text specifications.
+2. Throwaway UI/UX prototyping: The team must rapidly build, test, and discard iterative voice interaction mockups and screen micro-animations with real user focus groups.
+3. Rapid learning cycles: Testing user error tolerance, wake-word responsiveness, and acoustic latency in disposable prototypes prevents premature investment in complex backend microservices architectures before the interaction paradigm is validated.

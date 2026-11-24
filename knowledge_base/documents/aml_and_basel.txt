@@ -1,0 +1,9 @@
+Title: FATF Anti-Money Laundering (AML/KYC) & Basel III Operational Resilience Standards
+Jurisdiction: International / BCBS / Financial Action Task Force
+Scope: Customer Due Diligence, Sanctions Screening & High-Availability Resilience
+
+FATF Recommendation 10 & 16: Customer Due Diligence (CDD) and Wire Transfer Rules
+Financial customer onboarding systems must capture verifiable government identity credentials, verify biometric liveness with spoofing detection, and execute real-time automated fuzzy screening against OFAC, EU, UN Sanctions, and Politically Exposed Persons (PEP) watchlists. Single or aggregated transactions exceeding $10,000 (or local equivalent) must automatically generate Currency Transaction Reports (CTR) and trigger Suspicious Activity Report (SAR) queues with mandatory compliance officer review.
+
+Basel Committee on Banking Supervision (BCBS 239): Operational Risk and Resilience
+Core banking engines, real-time clearing payment rails, and loan disbursement pipelines must meet stringent business continuity parameters. Systems must maintain active-active multi-region cloud replication guaranteeing a Recovery Point Objective (RPO) of zero (no lost committed transactions) and a Recovery Time Objective (RTO) of less than 15 minutes during an unplanned regional outage.

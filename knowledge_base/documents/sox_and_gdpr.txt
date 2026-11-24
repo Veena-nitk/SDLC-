@@ -1,0 +1,9 @@
+Title: Sarbanes-Oxley Act (SOX Section 404) & GDPR Financial Privacy Standards
+Jurisdiction: United States (SOX) & European Union (GDPR)
+Effective Scope: Financial Accounting, Internal Controls & Consumer Data Privacy
+
+SOX Section 404: Internal Controls over Financial Reporting
+All electronic financial ledgers, loan booking systems, and transaction settlement databases must enforce automated internal accounting controls. A strict Segregation of Duties (SoD) must exist preventing any single user from both originating and approving a disbursement or ledger modification. Direct write or update access to production financial databases is prohibited; all ledger mutations must be recorded as immutable double-entry journal items with cryptographic checksum chaining.
+
+GDPR Article 25 & 32: Privacy by Design & Security of Financial Processing
+Financial institutions processing consumer Personally Identifiable Information (PII) must implement technical measures ensuring data protection by design. Customer data must be pseudonymized in non-production environments. Mechanisms must be provided to fulfill Article 17 (Right to Erasure) allowing automated purging or irreversible masking of non-statutory PII following account closure, subject to 7-year regulatory retention exemptions.

@@ -1,0 +1,20 @@
+Title: ATM Terminal Firmware, CEN/XFS Architecture, and ISO 8583 Financial Switching Standards
+Scope: Automated Teller Machine (ATM) firmware, physical cash dispensers, encrypted PIN pads (EPP), and host switches.
+Statutory & Hardware Standards: PCI PTS v6.0, CEN/XFS 3.30, EMVCo Book 1-4, ISO 8583:1987 / 1993 / 2003 Financial Transaction Card Originated Messages.
+
+Section 1: Hardware-Coupled Firmware Specifications
+1. ATM firmware interfaces directly with physical electromechanical peripherals through the CEN/XFS (eXtensions for Financial Services) standard: cash dispenser, motorized card reader, encrypted PIN pad (EPP), envelope/check deposit module, and receipt printer.
+2. Hardware constraints require fixed memory layouts, deterministic timing interrupts, and strict USB/RS-232 device state machine management.
+3. Cryptographic key custody: PIN entry requires FIPS 140-3 Level 3 physical tamper-responsive containment. Keys are injected via Dual-Control Split Knowledge and stored using DUKPT (Derived Unique Key Per Transaction) or Master/Session Triple-DES / AES-256.
+
+Section 2: ISO 8583 Message Formats & Switching
+1. Point-of-sale and ATM financial transactions use ISO 8583 bitmaps:
+   - 0100 / 0110: Authorization Request / Response
+   - 0200 / 0210: Financial Transaction Request / Response (Cash withdrawal, balance inquiry)
+   - 0420 / 0430: Reversal Request / Response (Automatic cash rollback on hardware jam or dispense failure)
+2. Field definitions (PAN, Processing Code, Transaction Amount, Transmission Date/Time, Systems Trace Audit Number) are rigid and mandated by national central switches.
+
+Section 3: SDLC Methodology Alignment (Why Waterfall is Mandatory)
+1. Requirements are 100% frozen upfront: Central bank switch protocols and physical hardware interfaces cannot be changed mid-development.
+2. Firmware distribution risk: Flashing firmware onto thousands of distributed physical ATMs involves significant operational risk. A defect in production cannot be fixed with a quick web hotfix; it causes machine downtime, cash entrapment, or physical truck rolls.
+3. Linear milestone gates: The project requires exhaustive sequential phases (Requirements freeze -> Hardware emulation architecture -> Implementation -> Benchtop lab regression -> Pilot branch staging -> Fleet-wide certified rollout).
