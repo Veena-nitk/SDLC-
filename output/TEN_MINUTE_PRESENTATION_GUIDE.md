@@ -98,15 +98,15 @@ Instead of 13 fragmented micro-agents, the system uses **5 focused, specialized 
 - **Aesthetic:** Warm espresso, cognac, and linen/cream palette (`#F8F6F0`) with serif typography (`Newsreader` / `Georgia`) and zero distracting emojis.
 
 ### 2. Scenario Selector Chips
-- Pre-loaded with 7 realistic industry benchmarks, each demonstrating a distinct SDLC methodology:
-  - *Loan Origination (Incremental)* -> Evaluates and recommends **Incremental Model** (Phased functional delivery).
-  - *Hospital EHR (V-Model)* -> Evaluates and recommends **V-Model** (Safety-critical clinical validation).
-  - *ATM Terminal (Waterfall)* -> Evaluates and recommends **Waterfall Model** (Fixed CEN/XFS hardware specifications).
-  - *Wealth Trading (Spiral)* -> Evaluates and recommends **Spiral Model** (Risk-driven algorithmic backtesting).
-  - *Claims Workbench (RAD)* -> Evaluates and recommends **Rapid Application Development (RAD)** (Internal JAD co-design in 60-90 days).
-  - *Biometric Wallet (Prototyping)* -> Evaluates and recommends **Prototyping Model** (Resolving voice/biometric UX ambiguity).
-  - *Payment Gateway (Agile/Scrum)* -> Evaluates and recommends **Agile / Scrum** (Two-week sprint cadences & CI/CD).
-- Clicking any chip instantly populates the title and architectural description into the form. You can also type any custom project description.
+- Pre-loaded with 7 realistic industry benchmarks with clean domain titles (zero model mentions in the input section to keep the UI clean and unbiased):
+  - *Loan Origination*
+  - *Hospital EHR*
+  - *ATM Terminal*
+  - *Wealth & Trading*
+  - *Claims Processing*
+  - *Biometric Wallet*
+  - *Payment Gateway*
+- Clicking any chip instantly populates the title and architectural description into the form. The SDLC Strategist agent dynamically evaluates the project's risk, hardware, regulatory, and iteration profile across all 7 methodologies.
 
 ### 3. Action Row & Primary Button
 - **"Generate SRS & SDLC Report" Button:** Triggers the multi-agent pipeline with a single click.

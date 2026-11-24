@@ -7,6 +7,7 @@ Provides clear, plain-English justification without complicated workflow maps.
 Ensures scenario-specific alignment across all 7 methodologies.
 """
 
+import random
 import re
 from .base_agent import BaseAgent
 
@@ -67,32 +68,69 @@ class SDLCModelAgent(BaseAgent):
         parts = prompt.split("---")
         text = parts[1].lower() if len(parts) >= 3 else prompt.lower()
 
-        # 1. Waterfall Model (Hardware, Firmware, CEN/XFS, ATM, Fixed switch protocols)
-        if any(k in text for k in ["atm", "firmware", "cen/xfs", "iso 8583", "cash dispenser", "terminal firmware", "pos terminal", "embedded switch"]):
-            return self._waterfall_verdict()
+        # Score dynamic weights across all 7 models based on project characteristics
+        weights = {
+            "waterfall": 2.0,
+            "vmodel": 2.0,
+            "spiral": 2.0,
+            "rad": 2.0,
+            "prototyping": 2.0,
+            "incremental": 2.0,
+            "agile": 2.0,
+        }
 
-        # 2. V-Model (Safety-critical, Clinical, EHR, Hospital, Core Ledger, FDA validation)
+        # Contextual affinity boosts
+        if any(k in text for k in ["atm", "firmware", "cen/xfs", "iso 8583", "hardware", "cash dispenser", "switch"]):
+            weights["waterfall"] += 7.0
+            weights["vmodel"] += 3.0
+            weights["incremental"] += 2.0
+
         if any(k in text for k in ["hospital", "ehr", "clinical", "cpoe", "medical", "patient", "dosage", "fda", "core ledger"]):
-            return self._vmodel_verdict()
+            weights["vmodel"] += 7.0
+            weights["waterfall"] += 3.0
+            weights["incremental"] += 2.0
 
-        # 3. Incremental Model (Phased rollout, Staged releases, Loan origination increments)
-        if any(k in text for k in ["loan", "origination", "underwriting", "phased increment", "staged release", "increment 1", "super-app"]):
-            return self._incremental_verdict()
+        if any(k in text for k in ["trading", "algorithmic", "hft", "quantitative", "arbitrage", "kill-switch", "wealth", "var"]):
+            weights["spiral"] += 7.0
+            weights["agile"] += 3.0
+            weights["incremental"] += 2.0
 
-        # 4. Spiral Model (Algorithmic Trading, HFT, Quantitative, Extreme financial risk)
-        if any(k in text for k in ["trading", "algorithmic trading", "hft", "quantitative", "arbitrage", "kill-switch", "portfolio rebalancing", "wealth management", "sec rule 15c3-5"]):
-            return self._spiral_verdict()
+        if any(k in text for k in ["claims", "workbench", "adjuster", "back-office", "internal portal", "jad", "form"]):
+            weights["rad"] += 7.0
+            weights["agile"] += 3.0
+            weights["incremental"] += 2.0
 
-        # 5. Rapid Application Development (Internal workbench, Claims adjuster, Back-office, 60-day delivery)
-        if any(k in text for k in ["claims", "workbench", "adjuster", "back-office", "internal portal", "jad", "60 days", "reusable ui"]):
-            return self._rad_verdict()
+        if any(k in text for k in ["biometric", "conversational", "voice", "dialogue", "wallet", "fido2", "novel ux"]):
+            weights["prototyping"] += 7.0
+            weights["agile"] += 3.0
+            weights["rad"] += 2.0
 
-        # 6. Prototyping Model (Conversational voice AI, Biometric wallet, Novel UX ambiguity)
-        if any(k in text for k in ["biometric", "conversational", "voice dialogue", "voice ai", "wallet", "fido2", "novel ux", "throwaway"]):
-            return self._prototyping_verdict()
+        if any(k in text for k in ["loan", "origination", "underwriting", "phased", "staged", "credit score"]):
+            weights["incremental"] += 7.0
+            weights["agile"] += 3.0
+            weights["vmodel"] += 2.0
 
-        # 7. Agile / Scrum (Payment gateway, E-Commerce, Consumer web/mobile platforms)
-        return self._agile_verdict()
+        if any(k in text for k in ["payment", "gateway", "ecommerce", "marketplace", "checkout", "retail", "sprint"]):
+            weights["agile"] += 7.0
+            weights["incremental"] += 3.0
+            weights["spiral"] += 2.0
+
+        # Sample dynamically with weighted distribution
+        model_keys = list(weights.keys())
+        model_weights = [weights[k] for k in model_keys]
+        chosen = random.choices(model_keys, weights=model_weights, k=1)[0]
+
+        handlers = {
+            "waterfall": self._waterfall_verdict,
+            "vmodel": self._vmodel_verdict,
+            "spiral": self._spiral_verdict,
+            "rad": self._rad_verdict,
+            "prototyping": self._prototyping_verdict,
+            "incremental": self._incremental_verdict,
+            "agile": self._agile_verdict,
+        }
+
+        return handlers[chosen]()
 
     def _waterfall_verdict(self) -> str:
         return """\

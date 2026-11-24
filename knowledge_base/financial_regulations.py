@@ -129,7 +129,6 @@ FINANCIAL_REGULATIONS: Dict[str, RegulationControl] = {
 SAMPLE_FINANCIAL_SCENARIOS = {
     "atm_firmware": {
         "title": "ATM Fleet Terminal Firmware & ISO 8583 Switch Upgrade",
-        "sdlc_model": "Waterfall Model",
         "description": (
             "Develop embedded firmware and host communication software for a national fleet of 5,000 automated teller machines (ATMs). "
             "The system interfaces with physical electromechanical peripherals (cash dispenser, motorized card reader, encrypted PIN pad, "
@@ -142,7 +141,6 @@ SAMPLE_FINANCIAL_SCENARIOS = {
     },
     "hospital_ehr": {
         "title": "Hospital Inpatient Electronic Health Records & Clinical Order Entry System",
-        "sdlc_model": "V-Model (Verification & Validation)",
         "description": (
             "Develop a mission-critical hospital inpatient electronic health records (EHR) and computerized physician order entry (CPOE) "
             "platform integrating with bedside smart pumps and pharmacy medication dispensing cabinets. The platform handles patient "
@@ -154,7 +152,6 @@ SAMPLE_FINANCIAL_SCENARIOS = {
     },
     "wealth_trading": {
         "title": "High-Frequency Algorithmic Wealth Management & Quantitative Risk Engine",
-        "sdlc_model": "Spiral Model (Risk-Driven)",
         "description": (
             "Build an ultra-low-latency algorithmic securities trading and automated portfolio rebalancing platform operating under high "
             "financial exposure. The system ingests microsecond market ticker data, executes proprietary quantitative statistical arbitrage "
@@ -166,7 +163,6 @@ SAMPLE_FINANCIAL_SCENARIOS = {
     },
     "insurance_claims": {
         "title": "Corporate Insurance Claims Adjudication & Adjuster Review Workbench",
-        "sdlc_model": "Rapid Application Development (RAD)",
         "description": (
             "Build an internal back-office claims adjudication and fraud investigation workbench for 300 internal corporate claims adjusters. "
             "The system handles property, casualty, and commercial claim folders, integrating with legacy mainframe policy databases to display "
@@ -178,7 +174,6 @@ SAMPLE_FINANCIAL_SCENARIOS = {
     },
     "biometric_wallet": {
         "title": "Conversational AI & Biometric FinTech Mobile Wallet",
-        "sdlc_model": "Prototyping Model",
         "description": (
             "Develop a next-generation consumer mobile financial wallet centered around an interactive conversational voice AI assistant "
             "and biometric payment authorization. Users initiate peer-to-peer payments, bill splitting, and balance inquiries through "
@@ -190,7 +185,6 @@ SAMPLE_FINANCIAL_SCENARIOS = {
     },
     "loan_origination": {
         "title": "Automated Commercial & Retail Loan Origination Platform",
-        "sdlc_model": "Incremental Model",
         "description": (
             "Develop an enterprise digital loan origination and underwriting system for a commercial bank. The project must be rolled out in "
             "phased, self-contained functional increments to manage operational risk and organizational rollout: Increment 1 delivers the core "
@@ -202,7 +196,6 @@ SAMPLE_FINANCIAL_SCENARIOS = {
     },
     "payment_gateway": {
         "title": "Omnichannel Payment Processing Gateway & Merchant Checkout Engine",
-        "sdlc_model": "Agile / Scrum",
         "description": (
             "Build a high-volume omnichannel payment gateway processing 25,000 transactions per second (TPS) for web and mobile merchants. "
             "The system must support credit/debit card processing, instant bank transfers (FedNow / SEPA Instant), merchant SDKs, and dynamic "
