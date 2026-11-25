@@ -2,7 +2,7 @@
 ## Adheres to IEEE Std 830-1998 Guidelines
 
 - **Project Title:** Automated Loan Origination & Credit Assessment Platform
-- **Document Date:** 2026-11-24 19:01:22 UTC
+- **Document Date:** 2026-11-24 19:17:35 UTC
 - **Classification:** Enterprise Technical Specification
 - **Authored By:** 5-Agent Collaborative LLM Architecture with RAG
 
@@ -75,18 +75,18 @@ The platform provides an automated, end-to-end digital processing and transactio
 ---
 
 ## 3. Recommended SDLC Methodology
-### Recommended SDLC Model: **Agile / Scrum**
+### Recommended SDLC Model: **Incremental Model**
 
-#### Why Agile / Scrum is the Best Choice for this Project:
-1. **Iterative Delivery with Fast Feedback:** Financial and transaction systems require frequent testing and validation of business rules with stakeholders. Scrum's two-week sprint cycles allow the team to deliver working software incrementally while continuously incorporating feedback.
-2. **Adapting to Evolving Regulations & APIs:** Financial regulations and external third-party APIs (credit bureaus, KYC verification, payment gateways) frequently change. Agile accommodates shifting interface specifications without halting development.
-3. **Continuous Integration & Quality:** Automated unit tests, security scans, and code reviews are integrated into daily sprint builds, catching defects early rather than waiting until the end of the project.
+#### Why Incremental Model is the Best Choice for this Project:
+1. **Staged Risk Mitigation & Phased Production Rollout:** Enterprise commercial and retail loan platforms involve massive organizational change. The Incremental model allows the bank to deliver Release 1 (Core Retail Intake), followed by Release 2 (Automated Credit Scoring), Release 3 (SME Underwriting Queues), and Release 4 (Core Banking Disbursement).
+2. **Operational Training & Manageable Organizational Bandwidth:** Underwriters, compliance officers, and branch loan officers cannot absorb a massive, monolithic platform all at once. Delivering self-contained operational increments allows staff to master one module before the next is deployed.
+3. **Early Value Realization & Revenue Generation:** The bank begins capturing loan applications, verifying credit, and generating interest revenue from the very first increment, rather than waiting 12 to 18 months for a monolithic system delivery.
 
 ---
 
 ### Runner-Up Alternative: **V-Model (Verification & Validation)**
-- **When to consider it:** If your institution mandates rigid, upfront regulatory sign-offs where every single functional tier must have an exact corresponding test tier before coding begins.
-- **Trade-off:** The V-Model provides great formal documentation and verification rigor, but it is inflexible to mid-project requirement changes and significantly slows down initial time-to-market.
+- **When to consider it:** If banking regulators demand that all lending algorithms and underwriter escalation workflows be fully certified under a single formal verification matrix prior to any customer intake.
+- **Trade-off:** The V-Model provides great regulatory documentation, but delaying customer launch until every advanced SME underwriting module is built severely delays return on investment and market competitiveness.
 
 ---
 
@@ -94,13 +94,13 @@ The platform provides an automated, end-to-end digital processing and transactio
 
 | SDLC Model | Suitability | Verdict & Assessment |
 | :--- | :---: | :--- |
-| **Agile / Scrum** | **Best Fit (92%)** | **Recommended.** Delivers working modules every 2 weeks, adapts to evolving API contracts, and enables continuous automated testing. |
-| **V-Model** | High (82%) | Strong for high-compliance auditing, but rigid if requirements or external partner APIs change during development. |
-| **Spiral Model** | Moderate (70%) | Excellent for high-risk research or complex AI algorithms; however, process overhead is excessive for standard transaction architectures. |
-| **Incremental Model** | Moderate (68%) | Good for launching a minimal baseline product first and adding modules later, but less flexible for rapid sprint iterations. |
-| **Prototyping** | Low (55%) | Helpful if user interface workflows are completely unknown upfront, but adds throwaway development overhead for backend-heavy financial systems. |
-| **RAD (Rapid Application Development)** | Low (45%) | Fast delivery for simple database-driven web apps, but unsuitable for high-security transaction ledgers requiring formal security audits. |
-| **Waterfall** | Poor (35%) | Inflexible linear progression. Discovering integration defects during late-stage testing leads to costly delays and rework. |
+| **Incremental Model** | **Best Fit (93%)** | **Recommended.** Phased functional rollouts (Retail Intake -> Scoring -> SME Underwriting -> Core Disbursement) maximize ROI and manage risk. |
+| **Agile / Scrum** | High (82%) | Strong for sprint execution within each increment, but executive banking governance requires clearly defined release increments. |
+| **V-Model** | High (80%) | Strong compliance verification, but monolithic all-or-nothing release delays initial commercial loan revenue. |
+| **Spiral Model** | Moderate (70%) | Useful for credit scoring algorithmic risk, but process overhead is excessive for standard loan application workflows. |
+| **RAD (Rapid Application Development)** | Moderate (62%) | Good for underwriter intake forms, but cannot handle complex multi-tier asynchronous credit bureau and core banking integrations. |
+| **Prototyping** | Low (50%) | Helpful for loan applicant portal UX, but adds unnecessary throwaway overhead for backend underwriting engines. |
+| **Waterfall** | Low (40%) | Highly inflexible. If credit bureau API formats or lending regulations shift during development, the entire project stalls. |
 
 
 ---
@@ -245,36 +245,71 @@ sequenceDiagram
 
 ---
 
-### 4. State & Activity Lifecycle Diagram
+### 4. Activity Diagram (Workflow & Decision Logic)
+
+```mermaid
+flowchart TD
+    Start([Start: User Submits Request]) --> Validate[Validate Input & Documents]
+    Validate --> CheckValid{Valid Input?}
+    
+    CheckValid -->|No| FixInput[Prompt User for Corrections]
+    FixInput --> Validate
+    
+    CheckValid -->|Yes| AutoCheck[Run Automated KYC & Screening]
+    AutoCheck --> CheckSanction{Screening Passed?}
+    
+    CheckSanction -->|Flagged| ManualReview[Route to Compliance Officer]
+    CheckSanction -->|Clear| ScoreRisk[Execute Algorithmic Risk Model]
+    
+    ScoreRisk --> DecisionThreshold{Risk Tier}
+    DecisionThreshold -->|Low Risk| AutoApprove[System Auto-Approval]
+    DecisionThreshold -->|Borderline| ManualReview
+    DecisionThreshold -->|High Risk| RejectApp[Reject & Send Adverse Notice]
+    
+    ManualReview --> OfficerDecision{Officer Decision}
+    OfficerDecision -->|Approved| AutoApprove
+    OfficerDecision -->|Declined| RejectApp
+    
+    AutoApprove --> Disburse[Execute Settlement & Fund Transfer]
+    Disburse --> AuditRecord[Log Immutable Audit Trail]
+    AuditRecord --> Complete([End: Completed])
+    RejectApp --> Complete
+```
+
+---
+
+### 5. State Machine Diagram (Entity Lifecycle)
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Draft : User Starts Request
-    Draft --> Verification : Submit Payload & Documents
+    [*] --> Draft : Application Created
+    Draft --> Submitted : User Submits Form
     
-    state Verification {
+    Submitted --> UnderVerification : Intake Pipeline Starts
+    
+    state UnderVerification {
         [*] --> DocumentCheck
-        DocumentCheck --> WatchlistScreening : Document Validated
-        WatchlistScreening --> VerificationPassed : Clean Record
-        WatchlistScreening --> Flagged : Verification Anomaly
+        DocumentCheck --> WatchlistScreening : Documents OK
+        WatchlistScreening --> VerificationPassed : No Red Flags
+        WatchlistScreening --> Flagged : Anomaly Detected
     }
-
+    
     Flagged --> ManualReview : Escalate to Specialist
-    ManualReview --> Rejected : Declined by Specialist
-    ManualReview --> Underwriting : Approved with Justification
-
     VerificationPassed --> Underwriting : Run Scoring Engine
     
     state Underwriting {
-        [*] --> IngestTelemetry
-        IngestTelemetry --> ScoreAlgorithm
-        ScoreAlgorithm --> AutoApproved : Low Risk
-        ScoreAlgorithm --> ManualReview : Borderline Risk
-        ScoreAlgorithm --> Rejected : High Risk
+        [*] --> IngestData
+        IngestData --> CalculateScore
+        CalculateScore --> AutoApproved : Low Risk Score
+        CalculateScore --> ManualReview : Borderline Score
+        CalculateScore --> Rejected : High Risk Score
     }
-
-    AutoApproved --> Settlement : Trigger Fund Transfer
-    Settlement --> Completed : Ledger Committed & Audited
+    
+    ManualReview --> AutoApproved : Specialist Overrides
+    ManualReview --> Rejected : Specialist Rejects
+    
+    AutoApproved --> Disbursing : Trigger Payment Rails
+    Disbursing --> Completed : Ledger Committed
     Completed --> [*]
     Rejected --> [*]
 ```
@@ -310,17 +345,17 @@ stateDiagram-v2
 
 
 ### Statutory References Retrieved via RAG:
-- **Citation [INSURANCE_CLAIMS_STANDARDS-CHK04 — Insurance Claims Processing & Adjudication Standards]** (Confidence: `86.0%`):
+- **Citation [INSURANCE_CLAIMS_STANDARDS-CHK04 — Insurance Claims Processing & Adjudication Standards]** (Confidence: `85.2%`):
   *Jurisdiction: National Insurance Commissioners (NAIC) / Health Insurance Portability (HIPAA)*
   > "Section 3: Statutory Settlement & Reserve Accounting
 Approved insurance claims must disburse payouts to policyholder bank accounts via automated clearing house (ACH) with automated deduction of deductibles. Reserve liabilities must be calculated and synced with general ledger accounting per statutory insurance standards."
 
-- **Citation [INSURANCE_CLAIMS_STANDARDS-CHK02 — Insurance Claims Processing & Adjudication Standards]** (Confidence: `84.6%`):
+- **Citation [INSURANCE_CLAIMS_STANDARDS-CHK02 — Insurance Claims Processing & Adjudication Standards]** (Confidence: `82.9%`):
   *Jurisdiction: National Insurance Commissioners (NAIC) / Health Insurance Portability (HIPAA)*
   > "Section 1: Automated Claims Intake & Document OCR
 Claims systems must capture first notice of loss (FNOL), policyholder records, medical bills, and police incident reports via digital channels. Automated document verification must flag duplicate claims, mismatched policy dates, and exaggerated damage assessments."
 
-- **Citation [SOX_AND_GDPR-CHK02 — Sarbanes-Oxley Act (SOX Section 404) & GDPR Financial Privacy Standards]** (Confidence: `82.8%`):
+- **Citation [SOX_AND_GDPR-CHK02 — Sarbanes-Oxley Act (SOX Section 404) & GDPR Financial Privacy Standards]** (Confidence: `82.7%`):
   *Jurisdiction: United States (SOX) & European Union (GDPR)*
   > "SOX Section 404: Internal Controls over Financial Reporting
 All electronic financial ledgers, loan booking systems, and transaction settlement databases must enforce automated internal accounting controls. A strict Segregation of Duties (SoD) must exist preventing any single user from both originating and approving a disbursement or ledger modification. Direct write or update access to production financial databases is prohibited; all ledger mutations must be recorded as immutable double-entry journal items with cryptographic checksum chaining."

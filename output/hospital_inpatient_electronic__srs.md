@@ -2,7 +2,7 @@
 ## Adheres to IEEE Std 830-1998 Guidelines
 
 - **Project Title:** Hospital Inpatient Electronic Health Records & Clinical Order Entry System
-- **Document Date:** 2026-11-24 19:12:18 UTC
+- **Document Date:** 2026-11-24 19:17:44 UTC
 - **Classification:** Enterprise Technical Specification
 - **Authored By:** 5-Agent Collaborative LLM Architecture with RAG
 
@@ -75,18 +75,18 @@ The platform provides an automated, end-to-end digital processing and transactio
 ---
 
 ## 3. Recommended SDLC Methodology
-### Recommended SDLC Model: **V-Model (Verification & Validation)**
+### Recommended SDLC Model: **Waterfall Model**
 
-#### Why V-Model is the Best Choice for this Project:
-1. **Life-Critical Safety & Zero Tolerance for Errors:** In hospital inpatient systems and clinical order entry, a software crash or miscalculated dosage can lead to severe patient harm or loss of life. The V-Model ensures that every design tier has an explicit, pre-planned verification tier before coding begins.
-2. **Rigorous Bidirectional Traceability for Statutory Audits:** Regulatory authorities (FDA Class II medical software guidelines, HIPAA Security Rule, and hospital accreditation boards) mandate end-to-end traceability matrices proving that every clinical requirement maps directly to an acceptance test scenario.
-3. **Defect Prevention in Parallel Phases:** Testing is not an afterthought at the end of the project. Acceptance tests are authored during Requirements analysis, System integration tests are authored during Architectural design, and Unit tests are authored during Detailed design, catching logical ambiguities before implementation.
+#### Why Waterfall is the Best Choice for this Project:
+1. **Completely Fixed Hardware & Protocol Specifications:** Physical electromechanical devices (cash dispensers, motorized card readers, encrypted PIN pads) and ISO 8583 banking switch messages are strictly defined upfront. There are no changing business requirements mid-project; the interface specifications are 100% frozen.
+2. **Prohibitive Cost of Production Defects:** Flashing firmware onto thousands of physically distributed ATM terminals makes post-deployment bug fixes extraordinarily expensive and hazardous. The Waterfall model enforces exhaustive upfront architectural verification and laboratory benchtop testing before field deployment.
+3. **Formal Linear Phase Gates:** Development must follow strict sequential milestones—Requirements Sign-off, Hardware Emulation Architecture, Cryptographic Key Management Implementation, Laboratory Regression Testing, Branch Pilot Certification, and Fleet Deployment. Moving backward is neither technically feasible nor economically justifiable.
 
 ---
 
-### Runner-Up Alternative: **Waterfall Model**
-- **When to consider it:** If clinical requirements are completely fixed and the hospital operates under traditional linear government procurement contracts.
-- **Trade-off:** While Waterfall provides formal documentation, it postpones all testing until code completion. The V-Model is far superior because test design happens concurrently with engineering design, discovering clinical logic flaws much earlier.
+### Runner-Up Alternative: **V-Model (Verification & Validation)**
+- **When to consider it:** If your institution requires formal bilateral audit sign-offs linking each hardware driver specification to an automated hardware-in-the-loop (HIL) test suite.
+- **Trade-off:** The V-Model provides exceptional verification rigor, but for hardware firmware where specs are fixed by national switch standards, the standard linear Waterfall sequence provides a clearer, milestone-driven delivery schedule.
 
 ---
 
@@ -94,13 +94,13 @@ The platform provides an automated, end-to-end digital processing and transactio
 
 | SDLC Model | Suitability | Verdict & Assessment |
 | :--- | :---: | :--- |
-| **V-Model** | **Best Fit (96%)** | **Recommended.** Guarantees bidirectional traceability, defect prevention, and rigorous validation demanded by FDA and HIPAA clinical mandates. |
-| **Waterfall** | High (78%) | Provides strong sequential documentation, but delaying test execution to the final phase creates unacceptable patient safety risk. |
-| **Incremental Model** | Moderate (68%) | Releasing clinical modules in stages is possible, but each increment still requires full V-Model verification before doctor deployment. |
-| **Spiral Model** | Moderate (65%) | Strong risk analysis, but iterative spiral prototypes are difficult to validate against formal clinical compliance criteria. |
-| **Agile / Scrum** | Low (52%) | Fast-paced sprints often cut corners on formal verification documentation, conflicting with strict hospital accreditation audits. |
-| **Prototyping** | Low (45%) | Useful for doctor UI screen mockups, but cannot replace the deep architectural verification required for medication dispensing. |
-| **RAD (Rapid Application Development)** | Poor (30%) | Fast visual assembly lacks the formal mathematical verification and safety-critical audit evidence required for inpatient care. |
+| **Waterfall** | **Best Fit (95%)** | **Recommended.** Fixed hardware specifications, immutable ISO 8583 protocols, and high defect cost make linear milestone progression optimal. |
+| **V-Model** | High (84%) | Excellent verification rigor for cryptographic drivers, but additional verification mapping overhead is redundant when switch specs are frozen. |
+| **Incremental Model** | Moderate (62%) | Flashing partial firmware increments onto physical cash machines introduces device state synchronization risks across the terminal fleet. |
+| **Spiral Model** | Low (50%) | Excessive risk-management process overhead for well-understood hardware standards and deterministic CEN/XFS device drivers. |
+| **Agile / Scrum** | Low (40%) | Sprint iterations and two-week release cycles are incompatible with physical hardware regression testing and ATM cryptographic certification. |
+| **Prototyping** | Poor (30%) | Throwaway UI prototypes offer zero value for low-level electromechanical device drivers and encrypted PIN pad firmware. |
+| **RAD (Rapid Application Development)** | Poor (25%) | RAD relies on drag-and-drop form builders and rapid UI iterations, completely unsuitable for embedded C/C++ firmware and hardware drivers. |
 
 
 ---
